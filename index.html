@@ -8,6 +8,72 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="img/palmer34.png" type="image/x-icon">
     <title>Flowers34</title>
+    <style>
+        body {
+            position: relative;
+            color: azure;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+            overflow: hidden;
+        }
+
+        .border-images {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .border-images img {
+            position: absolute;
+            width: 80px;
+            height: auto;
+            opacity: 0.8;
+        }
+
+        .greetings {
+            font-size: 7rem;
+            font-weight: 900;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .greetings img {
+            width: 120px;
+            height: auto;
+        }
+
+        .center-images {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .center-images img {
+            width: 150px;
+            height: auto;
+        }
+
+        .description {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .button a {
+            text-decoration: none;
+            font-size: 1rem;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
@@ -18,15 +84,37 @@
         <span>m</span>
         <span>e</span>
         <span>r</span>
+        <img src="img/Palmer35.png" alt="Imagen 1" class="styled-image">
     </div>
+
     <div class="description">
         <span>ESTE DETALLE ES PARA TI :)</span>
     </div>
+    
     <div class="button">
         <button class="botones">
-            <a href="flower.html" style="color: #fff;">CLICK AQUÍ</a>
+            <a href="flower.html">CLICK AQUÍ</a>
         </button>
     </div>
-</body>
 
+    <div class="border-images" id="border-images"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const borderImagesContainer = document.getElementById("border-images");
+            const positions = [
+                { top: "10px", left: "-10px" }, { top: "10px", left: "46%" }, { top: "10px", right: "10px" },
+                { top: "45%", left: "-10px" }, { top: "45%", right: "10px" },
+                { bottom: "10px", left: "-10px" }, { bottom: "10px", left: "46%" }, { bottom: "10px", right: "10px" }
+            ];
+
+            positions.forEach(pos => {
+                let img = document.createElement("img");
+                img.src = "img/palmer36.png";
+                Object.assign(img.style, pos);
+                borderImagesContainer.appendChild(img);
+            });
+        });
+    </script>
+</body>
 </html>
