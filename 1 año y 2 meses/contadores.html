@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Contador de AyM</title>
+  <link rel="icon" type="image/png" href="img/palmer.png">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    body {
+      background-color: #ffeef2;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @keyframes pulso {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.01);
+      }
+    }
+
+    .contador-box-morado {
+      display: inline-block;
+      padding: 10px 25px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 15px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #d8aaff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      animation: pulso 2s infinite;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .contador-box-naranja {
+      display: inline-block;
+      padding: 10px 25px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 15px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #ffd6a1;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      animation: pulso 2s infinite;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .section {
+      flex: 1;
+      position: relative;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: left;
+      background-size: cover;
+      background-position: center;
+      padding-left: 5vw;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.25);
+      z-index: 1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .content h2 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      font-family: 'Baloo 2', cursive;
+    }
+
+    .linea-divisoria {
+      height: 15px;
+      background: linear-gradient(to right, orange, purple);
+      box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .arriba {
+      background-image: url('img/2024-12-27_23.26.15.png');
+    }
+
+    .abajo {
+      background-image: url('img/2025-06-26_20.42.55.png');
+    }
+  </style>
+</head>
+<body>
+
+  <div class="section arriba">
+    <div class="overlay"></div>
+    <div class="content" style="color: #8735b0;">
+      <h2>Tiempo desde que nos conocimos 💜</h2>
+      <div class="contador-box-morado" id="contadorConocidos">Cargando...</div>
+    </div>
+  </div>
+
+  <div class="linea-divisoria"></div>
+
+  <div class="section abajo">
+    <div class="overlay"></div>
+    <div class="content" style="color: #f39d40;">
+      <h2>Tiempo de Relación 🧡</h2>
+      <div class="contador-box-naranja" id="contadorRelacion">Cargando...</div>
+    </div>
+  </div>
+
+  <script>
+    const inicioConocidos = new Date("2024-07-21T11:14:00-05:00");
+    const inicioRelacion = new Date("2025-05-23T00:00:00-05:00");
+
+    function actualizarContadores() {
+      const ahora = new Date();
+
+      function calcularDiferencia(inicio) {
+        let segundos = Math.floor((ahora - inicio) / 1000);
+
+        const años = Math.floor(segundos / (365.25 * 24 * 60 * 60));
+        segundos %= Math.floor(365.25 * 24 * 60 * 60);
+        const meses = Math.floor(segundos / (30.44 * 24 * 60 * 60));
+        segundos %= Math.floor(30.44 * 24 * 60 * 60);
+        const días = Math.floor(segundos / (24 * 60 * 60));
+        segundos %= 24 * 60 * 60;
+        const horas = Math.floor(segundos / 3600);
+        segundos %= 3600;
+        const minutos = Math.floor(segundos / 60);
+        segundos %= 60;
+
+        return `${años} años, ${meses} meses, ${días} días, ${horas}h ${minutos}m ${segundos}s`;
+      }
+
+      document.getElementById("contadorConocidos").textContent = calcularDiferencia(inicioConocidos) + " 💜";
+      document.getElementById("contadorRelacion").textContent = calcularDiferencia(inicioRelacion) + " 🧡";
+    }
+
+    actualizarContadores();
+    setInterval(actualizarContadores, 1000);
+  </script>
+</body>
+</html>
